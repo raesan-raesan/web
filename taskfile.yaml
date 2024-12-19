@@ -1,0 +1,8 @@
+version: "3"
+
+interval: 500ms
+
+dotenv: [".env"]
+
+tasks:
+  dev: bun dev --host

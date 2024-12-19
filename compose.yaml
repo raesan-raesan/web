@@ -1,0 +1,13 @@
+name: raesan-web
+
+services:
+  raesan-web:
+    container_name: raesan-web
+    build:
+      context: .
+      dockerfile: dev.dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
