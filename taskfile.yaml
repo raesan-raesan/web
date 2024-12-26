@@ -1,8 +1,8 @@
-version: "3"
+version: '3'
 
 interval: 500ms
 
-dotenv: [".env"]
+dotenv: ['.env']
 
 tasks:
-  dev: bun dev --host
+  dev: deno run dev -- --host
