@@ -1,5 +1,6 @@
 <script>
   import { Button } from "$lib/components/ui/button";
+  import CustomToast from "./custom-toast.svelte";
   import { Switch } from "$lib/components/ui/switch";
   import { Skeleton } from "$lib/components/ui/skeleton";
   import * as Collapsible from "$lib/components/ui/collapsible";
@@ -35,20 +36,28 @@
 
 <div class="flex flex-col gap-[5px] p-3">
   <!-- sonner -->
-  <Button
-    on:click={() =>
-      toast.info("Event has been created", {
-        description: "Sunday, December 03, 2023 at 9:00 AM",
-        action: {
-          label: "X",
-          onClick: () => {}
-        }
-      })}
-    class="flex max-w-[120px] items-center justify-center gap-[5px] p-5"
-  >
-    <Icon icon="mdi:plus-circle" width="22px" height="22px" />
-    <p>Toast</p>
-  </Button>
+  <div class="flex gap-[10px]">
+    <Button
+      on:click={() => {
+        toast.info("Event has been created", {
+          description: "Sunday, December 03, 2023 at 9:00 AM"
+        });
+      }}
+      class="flex max-w-[120px] items-center justify-center gap-[5px] p-5"
+    >
+      <Icon icon="mdi:plus-circle" width="22px" height="22px" />
+      <p>Toast</p>
+    </Button>
+    <Button
+      on:click={() => {
+        toast.custom(CustomToast);
+      }}
+      class="flex max-w-[120px] items-center justify-center gap-[5px] p-5"
+    >
+      <Icon icon="mdi:plus-circle" width="22px" height="22px" />
+      <p>Custom Toast</p>
+    </Button>
+  </div>
   <!-- collapsible -->
   <Collapsible.Root class="w-[350px] space-y-2 p-5">
     <div class="flex items-center justify-between space-x-4 px-4">

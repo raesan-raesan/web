@@ -14,15 +14,9 @@
         formatter =
           pkgs.nixfmt-classic; # formatter for .nix files, just run `nix fmt .` to format the entire directory
         devShell = pkgs.mkShell {
-          packages = with pkgs; [
+          packages = [
             inputs.deno_2_1_4-pkgs.legacyPackages.${system}.deno
-            cowsay
           ];
-          shellHook = ''
-            echo "deno `${
-              inputs.deno_2_1_4-pkgs.legacyPackages.${system}.deno
-            }/bin/deno --version`"
-          '';
         };
       });
 }
