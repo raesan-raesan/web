@@ -16,7 +16,8 @@
   import { Checkbox } from "$lib/components/ui/checkbox";
   import { toast } from "svelte-sonner";
   import { Input } from "$lib/components/ui/input";
-  import Icon from "@iconify/svelte";
+  import TriangleAlert from "lucide-svelte/icons/triangle-alert";
+  import CirclePlus from "lucide-svelte/icons/circle-plus";
   import { routeTestFormSchema } from "$lib/schema.js";
   import { superForm } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
@@ -45,7 +46,7 @@
       }}
       class="flex max-w-[120px] items-center justify-center gap-[5px] p-5"
     >
-      <Icon icon="mdi:plus-circle" width="22px" height="22px" />
+      <CirclePlus class="h-[22px] w-[22px]" />
       <p>Toast</p>
     </Button>
     <Button
@@ -54,8 +55,8 @@
       }}
       class="flex max-w-[120px] items-center justify-center gap-[5px] p-5"
     >
-      <Icon icon="mdi:plus-circle" width="22px" height="22px" />
-      <p>Custom Toast</p>
+      <CirclePlus class="h-[22px] w-[22px]" />
+      <p>Custom</p>
     </Button>
   </div>
   <!-- collapsible -->
@@ -129,7 +130,7 @@
     class="flex max-w-[200px] items-center justify-center gap-[5px] p-5"
     on:click={() => (alertDialogOpen = true)}
   >
-    <Icon icon="mdi:alert" width="22px" height="22px" />
+    <TriangleAlert class="h-[22px] w-[22px]" />
     <p>Alert Dialog</p>
   </Button>
   <!-- card + form -->

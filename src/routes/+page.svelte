@@ -1,11 +1,11 @@
 <script>
   import { Button } from "$lib/components/ui/button";
-  import Icon from "@iconify/svelte";
+  import CirclePlus from "lucide-svelte/icons/circle-plus";
 </script>
 
 <div class="fixed bottom-0 right-0 flex items-center justify-end p-5">
   <Button class="flex items-center justify-center gap-[5px] p-5">
-    <Icon icon="mdi:plus-circle" width="22px" height="22px" />
+    <CirclePlus class="h-[22px] w-[22px]" />
     <a href="/create-test"> Create Test </a>
   </Button>
 </div>

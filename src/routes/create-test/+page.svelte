@@ -54,19 +54,17 @@
     {#if create_test_input.curr_step == 1}
       <div class="w-full">
         <form id="class_input_form" class="flex w-full flex-col items-center gap-[20px]">
-          {#each { length: 20 }}
+          {#each { length: 20 }, i}
             <div
               class="flex w-full max-w-[200px] items-center justify-between space-x-2 rounded-lg border p-4"
             >
-              <div class="grid gap-1.5 leading-none">
-                <Label
-                  for="some_class_id"
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Some Class
-                </Label>
-              </div>
-              <Checkbox id="some_class_id" />
+              <Label
+                for={`some_class_id_${i}`}
+                class="bg-blue w-full flex-1 gap-1.5 text-sm font-medium leading-none"
+              >
+                Some Class {i}
+              </Label>
+              <Checkbox id={`some_class_id_${i}`} />
             </div>
           {/each}
         </form>
