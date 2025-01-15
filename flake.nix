@@ -12,7 +12,7 @@
       let pkgs = import nixpkgs { inherit system; };
       in {
         formatter =
-          pkgs.nixfmt-classic; # formatter for .nix files, just run `nix fmt .` to format the entire directory
+          pkgs.nixfmt-classic;
         devShell = pkgs.mkShell {
           packages = [
             inputs.deno_2_1_4-pkgs.legacyPackages.${system}.deno

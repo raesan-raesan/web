@@ -10,29 +10,18 @@
   import { Slider } from "$lib/components/ui/slider";
   import { ScrollArea } from "$lib/components/ui/scroll-area";
   import { Separator } from "$lib/components/ui/separator";
+  import { Checkbox } from "$lib/components/ui/checkbox";
   import * as AlertDialog from "$lib/components/ui/alert-dialog";
   import * as Card from "$lib/components/ui/card";
-  import * as Form from "$lib/components/ui/form";
-  import { Checkbox } from "$lib/components/ui/checkbox";
   import { toast } from "svelte-sonner";
-  import { Input } from "$lib/components/ui/input";
   import TriangleAlert from "lucide-svelte/icons/triangle-alert";
   import CirclePlus from "lucide-svelte/icons/circle-plus";
-  import { routeTestFormSchema } from "$lib/schema.js";
-  import { superForm } from "sveltekit-superforms";
-  import { zodClient } from "sveltekit-superforms/adapters";
-  let alertDialogOpen = false;
-
-  export let data;
-
-  const form = superForm(data, {
-    validators: zodClient(routeTestFormSchema),
-    dataType: "json"
-  });
-
-  const { form: formData, enhance } = form;
+  let alertDialogOpen = $state(false);
 
   const tags = Array.from({ length: 50 }).map((_, i, a) => `v1.2.0-beta.${a.length - i}`);
+  const nums = Array.from({ length: 20 }).map((_, i, a) => `${a.length - i}`);
+
+  let checkbox_inputs = $state([]);
 </script>
 
 <div class="flex flex-col gap-[5px] p-3">
@@ -140,47 +129,34 @@
         <Card.Title>Create project</Card.Title>
         <Card.Description>Deploy your new project in one-click.</Card.Description>
       </Card.Header>
-      <Card.Content>
-        <form method="POST" use:enhance id="routeTestForm">
-          <div class="grid w-full items-center gap-4">
-            <Form.Field {form} name="name" class="flex flex-col space-y-1.5">
-              <Form.Control let:attrs>
-                <Form.Label>Name</Form.Label>
-                <Input {...attrs} placeholder="Name of your project" bind:value={$formData.name} />
-              </Form.Control>
-              <Form.FieldErrors />
-            </Form.Field>
-            <Form.Field {form} name="description" class="flex flex-col space-y-1.5">
-              <Form.Control let:attrs>
-                <Form.Label>Description</Form.Label>
-                <Input
-                  {...attrs}
-                  placeholder="Description of your project"
-                  bind:value={$formData.description}
-                />
-              </Form.Control>
-              <Form.FieldErrors />
-            </Form.Field>
-            <Form.Field
-              {form}
-              name="terms"
-              class="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4"
+      <Card.Content class="flex flex-col gap-[10px]">
+        {#each nums as i}
+          <div
+            class="flex w-full max-w-[200px] items-center justify-between space-x-2 rounded-lg border p-4"
+          >
+            <Label
+              for={`some_class_id_${i}`}
+              class="bg-blue w-full flex-1 gap-1.5 text-sm font-medium"
             >
-              <Form.Control let:attrs>
-                <Checkbox {...attrs} bind:checked={$formData.terms} />
-                <div class="space-y-1 leading-none">
-                  <Form.Label>You accept our terms and conditions</Form.Label>
-                  <Form.Description>Just don't read them</Form.Description>
-                </div>
-                <input name={attrs.name} value={$formData.terms} hidden />
-              </Form.Control>
-            </Form.Field>
+              Some Class {i}
+            </Label>
+            <Checkbox
+              id={`some_class_id_${i}`}
+              onCheckedChange={(state) => {
+                if (state) {
+                  checkbox_inputs.push(i);
+                } else {
+                  checkbox_inputs.splice(checkbox_inputs.indexOf(i), 1);
+                }
+                console.log(checkbox_inputs);
+              }}
+            />
           </div>
-        </form>
+        {/each}
       </Card.Content>
       <Card.Footer class="flex justify-between">
         <Button variant="outline">Cancel</Button>
-        <Form.Button form="routeTestForm">Deploy</Form.Button>
+        <Button form="routeTestForm">Deploy</Button>
       </Card.Footer>
     </Card.Root>
   </div>

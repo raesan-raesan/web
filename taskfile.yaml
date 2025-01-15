@@ -2,7 +2,9 @@ version: "3"
 
 interval: 500ms
 
-dotenv: [".env"]
-
 tasks:
-  dev: deno run dev -- --host
+  dev:
+    cmds:
+      - deno run dev -- --host
+    env:
+      VITE_PUBLIC_API_URL: "http://localhost:8080"
