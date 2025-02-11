@@ -181,7 +181,14 @@
         on:click={() => {
           if (create_test_input.curr_step == 1) {
             goto("/");
-          } else {
+          } else if (create_test_input.curr_step == 2) {
+            create_test_input.subjects = [];
+            create_test_input.curr_step -= 1;
+          } else if (create_test_input.curr_step == 3) {
+            create_test_input.chapters = [];
+            create_test_input.curr_step -= 1;
+          } else if (create_test_input.curr_step == 4) {
+            create_test_input.format.total_questions = [10];
             create_test_input.curr_step -= 1;
           }
         }}
@@ -191,10 +198,47 @@
       <Button
         id="next_button"
         on:click={() => {
-          if (create_test_input.curr_step == 4) {
-            console.log(create_test_input);
-          } else {
-            create_test_input.curr_step += 1;
+          if (create_test_input.curr_step == 1) {
+            if (create_test_input.classes.length != 0) {
+              create_test_input.curr_step += 1;
+            } else {
+              alert("Sorry, you have to select something!");
+            }
+          } else if (create_test_input.curr_step == 2) {
+            if (create_test_input.subjects.length != 0) {
+              create_test_input.curr_step += 1;
+            } else {
+              alert("Sorry, you have to select something!");
+            }
+          } else if (create_test_input.curr_step == 3) {
+            if (create_test_input.chapters.length != 0) {
+              create_test_input.curr_step += 1;
+            } else {
+              alert("Sorry, you have to select something!");
+            }
+          } else if (create_test_input.curr_step == 4) {
+            fetch("/api/create-test", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(create_test_input)
+            })
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                console.log(data);
+                // if (data.questions.length == 0) {
+                //   alert("Something went wrong, Your test has no questions!");
+                // } else {
+                //   localStorage.setItem(`raesan_test_id:${data.id}`, JSON.stringify(data));
+                //   window.location.href = "/";
+                // }
+              })
+              .catch((error) => {
+                console.error("Failed to make a request to the Server, Error:", error);
+              });
           }
         }}
         class="btn btn-primary max-w-[160px] flex-1 rounded-[6px]"
