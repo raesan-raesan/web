@@ -3,12 +3,12 @@
   import CirclePlus from "lucide-svelte/icons/circle-plus";
 </script>
 
-<div class="fixed bottom-0 right-0 flex items-center justify-end p-5">
+<a href="/create-test" class="fixed bottom-0 right-0 flex items-center justify-end p-5">
   <Button class="flex items-center justify-center gap-[5px] p-5">
     <CirclePlus class="h-[22px] w-[22px]" />
-    <a href="/create-test"> Create Test </a>
+    <p>Create Test</p>
   </Button>
-</div>
+</a>
 
 <div class="mt-[120px] flex w-full flex-col items-center">
   <h2 class="text-2xl">Your Tests</h2>
