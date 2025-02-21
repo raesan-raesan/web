@@ -35,6 +35,7 @@
     "svelte": "^5.0.0",
     "svelte-adapter-bun": "^0.5.2",
     "svelte-check": "^4.0.0",
+    "svelte-loading-spinners": "^0.3.6",
     "svelte-sonner": "^0.3.28",
     "sveltekit-superforms": "^2.22.1",
     "tailwind-merge": "^2.5.5",
@@ -44,11 +45,10 @@
     "typescript-eslint": "^8.0.0",
     "vaul-svelte": "^0.3.2",
     "vite": "^6.0.0",
-    "zod": "^3.24.1"
-  },
-  "dependencies": {
+    "zod": "^3.24.1",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15"
-  }
+  },
+  "dependencies": {}
 }
